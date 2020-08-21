@@ -42,6 +42,16 @@ app.post('/api/addcar', (req,res) => {
     })
 });
 
+app.post('/api/removecar', (req,res) => {
+    
+    const brand = req.body.brand;
+
+    Car.remove( {brand: brand}, (err, doc) => {
+        if(err) return console.log(err);
+        console.log(doc);
+    })
+});
+
 
 
 app.get('/api/getcars', (req, res) => {
@@ -49,6 +59,18 @@ app.get('/api/getcars', (req, res) => {
         if(err) return console.log(err);
         res.json(doc);
     })
+})
+
+app.get('/api/updatecar', (req, res) => {
+    const id = req.body.id;
+    const brand = req.body.brand;
+
+    Car.update( {_id : id}, { $set: {
+        brand: brand
+    }}, (err, doc) => {
+        if(err) return console.log(err);
+        res.json(doc);
+    });
 })
 
 /*
