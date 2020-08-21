@@ -37,7 +37,7 @@ class App extends Component {
   onCarUpdate = () => {
     axios.get('/api/updatecar', {
       id: '5f3fac63221053301c1a67b8',
-      brand: 'Peugeot'
+      brand: 'Renault'
     }).then( response => {
       console.log('ok');
     })

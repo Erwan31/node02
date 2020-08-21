@@ -65,12 +65,25 @@ app.get('/api/updatecar', (req, res) => {
     const id = req.body.id;
     const brand = req.body.brand;
 
+    /*
     Car.update( {_id : id}, { $set: {
         brand: brand
     }}, (err, doc) => {
         if(err) return console.log(err);
         res.json(doc);
     });
+    */
+   Car.find( {}, (err, car) => {
+       if(err) return console.log(err);
+
+       car.set({
+           brand: brand
+       });
+       car.save((err,doc)=>{
+           if(err) return console.log(err);
+           res.json(doc);
+       })
+   }
 })
 
 /*
